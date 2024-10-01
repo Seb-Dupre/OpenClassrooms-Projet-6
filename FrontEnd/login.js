@@ -38,10 +38,3 @@ form.addEventListener("submit", async (e) => {
     }
 })
 /*login email and pwd : "sophie.bluel@test.tld" , "S0phie" */ 
-/*
-console.log(localStorage.getItem("token"))
-if(localStorage.getItem("token")){
-    window.location.href = "index.html";
-}
-*/
-//localStorage.removeItem("token")

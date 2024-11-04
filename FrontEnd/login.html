@@ -1,59 +1,69 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Page de connexion</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
-	<script src="login.js" defer></script>
-</head>
-<body>
-	<div class="backgroundcolor">
-
-		<header>
-			<div id="edit" class="edit hidden"><i class="fa-regular fa-pen-to-square edit-icon"></i> Mode édition</div>
-			<div class="header">
-				
-				<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-				<nav>
-					<ul>
-						<li>projets</li>
-						<li>contact</li>
-						<li><a class="logout nav__link" href="login.html">login</a></li>
-						<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-		<main>
-			<section class="login">
-				<h2>Log in</h2>
-				<p></p>
-				<form action="submit" class="form-field form-field--login">
-					<label for="email" class="form-field__label--login">E-mail</label>
-					<input type="email" id="email" class="form-field__input form-field__input--login">
-					<label for="password" class="form-field__label--login">Mot de passe</label>
-					<input type="password" id="password" class="form-field__input form-field__input--login">
-					<div class="login__buttons">
-						<button type="submit" class="login-button">Se connecter</button>
-						<a href="#">Mot de passe oublié</a>
-					</div>
-				</form>
-			</section>
-		</main>
-		
-	</div>
-		<footer>
-			<nav>
-				<ul>
-					<li>Mentions Légales</li>
-				</ul>
-			</nav>
-		</footer>
-	</body>
-	</html>
-	
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Page de connexion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="login.js" defer></script>
+  </head>
+  <body>
+    <div class="backgroundcolor">
+      <header>
+        <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+        <nav>
+          <ul>
+            <li>projets</li>
+            <li>contact</li>
+            <li>
+              <a class="logout nav__link font-weight-600" href="login.html"
+                >login</a
+              >
+            </li>
+            <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section class="login">
+          <h2>Log in</h2>
+          <p></p>
+          <form action="submit" class="form-field form-field--login">
+            <label for="email" class="form-field__label--login">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              class="form-field__input form-field__input--login"
+            />
+            <label for="password" class="form-field__label--login"
+              >Mot de passe</label
+            >
+            <input
+              type="password"
+              id="password"
+              class="form-field__input form-field__input--login"
+            />
+            <div class="login__buttons">
+              <button type="submit" class="login-button">Se connecter</button>
+              <a href="#">Mot de passe oublié</a>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+    <footer>
+      <nav>
+        <ul>
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>

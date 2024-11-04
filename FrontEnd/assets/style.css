@@ -53,10 +53,10 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
-.header {
+header {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 50px;
+	margin-bottom:50px;
 }
 section {
 	margin: 50px 0
@@ -131,6 +131,7 @@ li:hover {
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
+	margin-top: 50px;
 }
 
 .gallery img {
@@ -190,15 +191,16 @@ footer nav ul {
 
 .backgroundcolor{
 	background-color: #FFFEF8;
-	padding: 50px 150px 0 ;
+	padding: 40px 150px 50px ;
 	margin: 0;
 }
+#portfolio .filters__h2{ margin-bottom: 50px;}
 .filters{
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
 	gap: 10px;
-	margin:50px 0 50px 0;
+	margin:0;
 }
 .filter__button{
 	font-family: 'Syne';
@@ -214,13 +216,15 @@ footer nav ul {
 	
 }
 .filter__button-selected{ 
-color: white;
-background-color: #1D6154; }
-
+	color: white;
+	background-color: #1D6154; }
+.font-weight-600{
+	font-weight: 600;
+	}
 .login {
 	margin-top: 150px;
 	margin-bottom: 0;
-	padding-bottom: 350px;
+	padding-bottom: 300px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -289,8 +293,9 @@ background-color: #1D6154; }
 	text-decoration: none;
 	color:black;
 }
-.nav__link:active{
-	font-weight: 600;
+
+.nav__link:hover{
+	color: #B1663C;
 }
 /* edit mode*/
 
@@ -298,8 +303,9 @@ background-color: #1D6154; }
 	text-align: center;
 	color: white;
 	background-color: black;
-	width: 100%;
+	min-width: 100%;
 	padding: 20px 0px;
+	margin: 0;
 }
 .edit-project{
 	display: flex;
@@ -406,6 +412,7 @@ font-weight: 400;
 	flex-wrap: wrap;
 	gap: 30px 10px;
 	padding-bottom:65px;
+	overflow: hidden;
 }
 .modal-works figure{
 	position: relative;
@@ -437,7 +444,7 @@ font-weight: 400;
 	align-items: center;
 	height: 100%;
 }
-.modal-file{
+.choose-photo{
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
@@ -448,39 +455,46 @@ font-weight: 400;
 	width: 420px;
 	margin-bottom: 30px;
 }
-.modal-file img{
+.choose-photo img{
 	max-height: 170px;}
 
-.modal-file .fa-image{
+.choose-photo .fa-image{
 	color: #B9C5CC;
 	font-size: 76px;
 	margin: 13px 0 6px;
 }
-.modal-file-button{
+.format-info {
+   font-size: 10px;
+   font-weight: 400;
+}
+.choose-photo__button{
 	text-align: center;
 	height: 36px;
 	margin-bottom: 7px;
 }
+.choose-photo__button label{
+	cursor: pointer;
+	display: flex;
+	justify-content:  center;
+	align-items: center;
 
-.modal-file-button label{
+}
+.modal-label-span{
 	color: #306685;
 	font-size: 14px;
 	font-weight: 500;
 	background-color: #CBD6DC;
-	padding: 10px 33px;
+	height: 36px;
+	width: 175px;;
 	line-height: 36px;
 	border-radius: 50px;
-	cursor: pointer;
+}
+.choose-photo__button input{
+position: absolute;
 
 }
-.modal-file-button input{
+.choose-photo__button input{
 	visibility: hidden; }
-
- .modal-file p {
-	font-size: 10px;
-	font-weight: 400;
- }
-
 
 /*hide*/
 .hidden{
@@ -488,4 +502,8 @@ font-weight: 400;
 }
 .grayed{
 	background-color: #A7A7A7;
+	cursor: auto;
+}
+.visibility-hidden{
+	visibility: hidden;
 }

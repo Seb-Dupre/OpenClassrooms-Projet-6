@@ -7,11 +7,19 @@ async function fetchWorks () {
   return await response.json()
 }
 fetchWorks()
+// Ajout apres soutenance
+let project = null
+async function getProject (invalidate = false) {
+  if (!project || invalidate) {
+    project = await fetchWorks()
+  }
+  return project
+}
 
 /*Affichage et creation des works*/
 async function displayWorks () {
   gallery.innerText = ''
-  const works = await fetchWorks()
+  const works = await getProject()
   works.forEach(work => {
     createWorks(work)
   })
@@ -33,21 +41,25 @@ function createWorks (work) {
 
 /* recupere les categories */
 async function fetchCategories () {
-  const categories = localStorage.getItem('categories')
-  if (categories) {
-    return JSON.parse(categories)
-  }
   const response = await fetch('http://localhost:5678/api/categories')
   const json = await response.json()
-  localStorage.setItem('categories', JSON.stringify(json))
   return json
 }
 
 fetchCategories()
+
+// Ajout apres soutenance
+let categories = null
+async function getCategories () {
+  if (!categories) {
+    categories = await fetchCategories()
+  }
+  return categories
+}
 // créer et affiche les boutons de categories
 
 async function displayCategory () {
-  const categories = await fetchCategories()
+  const categories = await getCategories()
   categories.forEach(category => {
     const divBtn = document.createElement('div')
     const btn = document.createElement('button')
@@ -64,7 +76,7 @@ displayCategory()
 // filtre
 
 async function categoryFilter () {
-  const works = await fetchWorks()
+  const works = await getProject()
   const buttons = document.querySelectorAll('.filter__button')
 
   let index = 0
@@ -142,7 +154,7 @@ addButton.addEventListener('click', e => {
 const worksModal = document.querySelector('.modal-works')
 async function displayWorksModal () {
   worksModal.innerHTML = ''
-  const works = await fetchWorks()
+  const works = await getProject()
   works.forEach(work => {
     const figure = document.createElement('figure')
     const img = document.createElement('img')
@@ -152,32 +164,28 @@ async function displayWorksModal () {
     figure.appendChild(i)
     img.src = work.imageUrl
     i.id = work.id
-    worksModal.appendChild(figure)
-  })
-  deleteWorks()
-}
-displayWorksModal()
-
-function deleteWorks () {
-  const trashAll = document.querySelectorAll('.trash-can')
-  trashAll.forEach(trash => {
-    trash.addEventListener('click', e => {
-      id = trash.id
+    //modifier apres soutenance, la fonctionalité de la fonction deleteWorks, fait desormé partie de displayWorksModal
+    i.addEventListener('click', e => {
+      id = i.id
       fetch('http://localhost:5678/api/works/' + id, {
         method: 'DELETE',
         headers: {
           'content-Type': 'application/json',
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }
-      }).then(response => {
+      }).then(async response => {
         if (response.ok) {
+          await getProject(true)
           displayWorksModal()
           displayWorks()
         }
       })
     })
+    worksModal.appendChild(figure)
   })
 }
+
+displayWorksModal()
 
 // add photo
 
@@ -194,6 +202,19 @@ const validateFormsBtn = document.querySelector('.modal_new-photo button')
 fileInput.addEventListener('change', () => {
   const file = fileInput.files[0]
   if (file) {
+    //ajout apres soutenance
+    const maxSize = 4 * 1024 * 1024
+    if (file.size > maxSize) {
+      resetImgPreview()
+      return
+    }
+    //ajout apres soutenance
+    const validImageTypes = ['image/jpeg', 'image/png']
+    if (!validImageTypes.includes(file.type)) {
+      resetImgPreview()
+      return
+    }
+
     const reader = new FileReader()
     reader.onload = function (e) {
       imgPreview.src = e.target.result
@@ -214,12 +235,13 @@ function resetImgPreview () {
   fileLabel.classList.remove('hidden')
   fileIcon.classList.remove('hidden')
   fileInfoSize.classList.remove('hidden')
+  validateFormsBtn.classList.add('grayed')
 }
 //categories
 
 async function displayCategoryModal () {
   const select = document.querySelector('.modal_new-photo select')
-  const categories = await fetchCategories()
+  const categories = await getCategories()
   categories.forEach(category => {
     const option = document.createElement('option')
     option.value = category.id
@@ -258,8 +280,9 @@ function newWorks () {
         Authorization: 'Bearer ' + localStorage.getItem('token')
       },
       body: formData
-    }).then(response => {
+    }).then(async response => {
       if (response.ok) {
+        await getProject(true)
         displayWorksModal()
         displayWorks()
         clearFormField()
@@ -274,7 +297,6 @@ newWorks()
 async function clearFormField () {
   title.value = ''
   category.value = ''
-  validateFormsBtn.classList.add('grayed')
   modalContainer.classList.add('hidden')
   resetImgPreview()
 }

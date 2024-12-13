@@ -29,7 +29,7 @@ form.addEventListener('submit', async e => {
     localStorage.setItem('token', json.token)
     window.location.href = 'index.html'
   } else {
-    errorMessage.textContent = 'email ou mot de passe est incorrect. '
+    errorMessage.textContent = 'Email ou mot de passe incorrect.'
   }
 })
 /*login email and pwd : "sophie.bluel@test.tld" , "S0phie" */
